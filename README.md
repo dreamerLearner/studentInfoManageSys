@@ -1,9 +1,8 @@
-# studentInfoManageSys
-学生信息管理系统
-Jeecg-Boot 快速开发平台
-当前最新版本： 2.1.4（发布日期：20200224）
+# 学生信息管理系统
 
-后端技术架构
+发布日期：20220910
+
+# 后端技术架构
 
 基础框架：spring-cloud-dependencies2021.0.1，springboot2.6.3
 
@@ -19,11 +18,17 @@ Jeecg-Boot 快速开发平台
 
 其他：fastjson，poi，Swagger-ui，quartz, lombok（简化代码）等。
 
-开发环境
+# 前端技术架构
+
+基础框架：Vue2+ElementUi
+
+Web技术交互：ajax , json
+
+# 开发环境
 
 语言：Java 8
 
-IDE(JAVA)： Eclipse安装lombok插件 或者 IDEA
+IDE(JAVA)： IDEA ， VsCode
 
 依赖管理：Maven
 
