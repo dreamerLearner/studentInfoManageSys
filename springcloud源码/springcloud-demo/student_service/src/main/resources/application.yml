@@ -1,0 +1,86 @@
+server:
+  port: 9001
+
+spring:
+  application:
+    name: student-service
+  #允许存在多个Feign调用相同Service的接口
+  main:
+    allow-bean-definition-overriding: true
+  datasource:
+      username: root
+      password: name123456
+      url: jdbc:mysql://localhost:3306/education_db?useUnicode=true&characterEncoding=utf8&useSSL=true&serverTimezone=GMT%2B8
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      type: com.alibaba.druid.pool.DruidDataSource
+      #Spring Boot 默认是不注入这些属性值的，需要自己绑定
+      #druid 数据源专有配置
+      initialSize: 5
+      minIdle: 5
+      maxActive: 20
+      maxWait: 60000
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: SELECT 1 FROM DUAL
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+
+      #配置监控统计拦截的filters，stat:监控统计、log4j：日志记录、wall：防御sql注入
+      #如果允许时报错  java.lang.ClassNotFoundException: org.apache.log4j.Priority
+      #则导入 log4j 依赖即可，Maven 地址：https://mvnrepository.com/artifact/log4j/log4j
+      filters: stat,wall,log4j
+      maxPoolPreparedStatementPerConnectionSize: 20
+      useGlobalDataSourceStat: true
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+  #redis配置
+  redis:
+    host: 192.168.222.128
+    port: 6379
+    lettuce:
+      pool:
+        max-wait: 1000
+        max-idle: 8
+        min-idle: 0
+        max-active: 8
+mybatis-plus:
+  type-aliases-package: com/dreamer/pojo
+  mapper-locations: classpath:mapper/*.xml
+mybatis:
+  type-aliases-package: com/dreamer/pojo
+  mapper-locations: classpath:mapper/*.xml
+logging:
+  level:
+    root: info
+    org.springframework.web.servlet.DispatcherServlet: DEBUG
+    org.springframework.cloud.sleuth: DEBUG
+    com.dreamer: info
+
+
+#eureka服务注册
+eureka:
+  client:
+    service-url:
+      prefer-ip-address: true
+      instance-id: student-service9001
+      defaultZone: http://eureka7005.com:7005/eureka/, http://eureka7006.com:7006/eureka/
+  instance:
+    hostname: localhost
+feign:
+  circuitbreaker:
+    enabled: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+hystrix:
+  dashboard:
+    proxy-stream-allow-list: '*'
+  command:
+    default:
+      circuitBreaker:
+        requestVolumeThreshold: 20 #触发熔断的最小请求次数，默认20
+        sleepWindowInMilliseconds: 10000 #熔断多少秒后去尝试请求
+        errorThresholdPercentage: 50 #触发熔断的失败请求最小占比，默认50%

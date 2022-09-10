@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dreamer.mapper.StudentMapper">
+
+    <resultMap id="StudentMap" type="Student">
+        <result property="id" column="sid" jdbcType="INTEGER"/>
+        <result property="name" column="sname" jdbcType="VARCHAR"/>
+        <result property="sex" column="ssex" jdbcType="INTEGER"/>
+        <result property="profession" column="pname" jdbcType="VARCHAR"/>
+        <result property="department" column="dname" jdbcType="VARCHAR"/>
+        <result property="grade" column="sgrade" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="getAllStudent" resultMap="StudentMap">
+        SELECT student.id sid,student.name sname,student.sex ssex,
+               profession.name pname,department.name dname,student.grade sgrade
+        FROM student
+        INNER JOIN department ON student.`departmentId`= department.`id`
+        INNER JOIN profession ON student.`professionId`= profession.`id`
+        order by student.id ASC;
+    </select>
+
+    <insert id="addStudent" parameterType="Student">
+        insert into student (id,name,sex,professionId,departmentId,grade)
+        values (#{id},#{name},#{sex},#{profession},#{department},#{grade});;
+    </insert>
+    <update id="updateStudent" parameterType="Student">
+        update student
+        set id = #{id},name = #{name},sex = #{sex},
+        professionId = #{profession},departmentId = #{department},grade = #{grade}
+        where id=#{id};
+    </update>
+    <delete id="deleteStudent">
+        delete from student
+        where id=#{id} and name=#{name}
+    </delete>
+
+    <select id="isExitStudent" resultType="String">
+        select name
+        from student
+        where id=#{id} or name=#{name}
+    </select>
+</mapper>

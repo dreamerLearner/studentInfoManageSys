@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="eureka-server-another" />
+        <module name="eureka-server" />
+        <module name="profession_service" />
+        <module name="eureka-provider-another" />
+        <module name="springcloud-demo" />
+        <module name="student_service" />
+        <module name="department_service" />
+        <module name="hystrix_turbine" />
+        <module name="api_gateway_server" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel target="8">
+      <module name="api_gateway_server" target="1.8" />
+      <module name="department_service" target="1.8" />
+      <module name="eureka-consumer" target="1.8" />
+      <module name="eureka-feign-client" target="1.5" />
+      <module name="eureka-hystrix-client" target="1.5" />
+      <module name="eureka-provider-another" target="1.8" />
+      <module name="eureka-ribbon-client" target="1.5" />
+      <module name="eureka-server" target="1.8" />
+      <module name="eureka-server-another" target="1.8" />
+      <module name="hystrix-provider" target="1.5" />
+      <module name="hystrix_turbine" target="1.8" />
+      <module name="profession_service" target="1.8" />
+      <module name="springcloud-demo" target="18" />
+      <module name="student_service" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="api_gateway_server" options="-parameters" />
+      <module name="department_service" options="-parameters" />
+      <module name="eureka-consumer" options="-parameters" />
+      <module name="eureka-feign-client" options="-parameters" />
+      <module name="eureka-hystrix-client" options="-parameters" />
+      <module name="eureka-provider-another" options="-parameters" />
+      <module name="eureka-ribbon-client" options="-parameters" />
+      <module name="eureka-server" options="-parameters" />
+      <module name="eureka-server-another" options="-parameters" />
+      <module name="hystrix-provider" options="-parameters" />
+      <module name="hystrix_turbine" options="-parameters" />
+      <module name="profession_service" options="-parameters" />
+      <module name="springcloud-demo" options="-parameters" />
+      <module name="student_service" options="-parameters" />
+    </option>
+  </component>
+</project>

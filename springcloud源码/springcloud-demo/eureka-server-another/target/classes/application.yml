@@ -1,0 +1,16 @@
+server:
+  port: 7006
+spring:
+  application:
+    name: eureka-server
+
+eureka:
+  instance:
+    hostname: eureka7006.com
+  client:
+    fetch-registry: false
+    register-with-eureka: false
+    service-url:
+      defaultZone: http://eureka7005.com:7005/eureka/
+  server:
+    enable-self-preservation: false    # 自我保护机制，保护服务列表被误杀
